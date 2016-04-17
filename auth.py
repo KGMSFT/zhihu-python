@@ -67,7 +67,9 @@ class AccountError(Exception):
 
 def download_captcha():
     url = "http://www.zhihu.com/captcha.gif"
-    r = requests.get(url, params={"r": random.random()} )
+    #There is some change
+    #r = requests.get(url, params={"r": random.random()} )
+    r = requests.get(url, params={"r": random.random(),"type":"login"} )
     if int(r.status_code) != 200:
         raise NetworkError(u"验证码请求失败")
     image_name = u"verify." + r.headers['content-type'].split("/")[1]
